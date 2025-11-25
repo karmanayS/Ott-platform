@@ -1,4 +1,6 @@
 ## signup , signin , route  in express 
+## specify frontend domain in cors
+## error status codes in backend and JWT_SECRET being imported from common
 ## create common package 
 ## zod schema in common package
 ## create email package , write templates of email for senidng otp 
