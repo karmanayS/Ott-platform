@@ -20,6 +20,8 @@ model User {
   password   String
   imageUrl   String?
   isVerified Boolean    @default(false)
+  otp        String
+  otpExpiry  DateTime
   comments   Comments[]
   likes      Video[]
 }
