@@ -1,0 +1,21 @@
+{
+  "name": "@repo/email",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.19.0",
+  "dependencies": {
+    "@repo/typescript-config": "workspace:*",
+    "dotenv": "^17.2.3",
+    "resend": "^6.5.2"
+  },
+  "exports":{
+    "./email":"./src/index.ts"
+  }
+}

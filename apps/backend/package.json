@@ -16,20 +16,18 @@
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
     "@repo/common": "workspace:*",
+    "@repo/email": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-<<<<<<< HEAD
     "@types/axios": "^0.14.4",
     "@types/express": "^5.0.5",
     "axios": "^1.13.2",
-=======
     "@types/bcrypt": "^6.0.0",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.5",
     "@types/jsonwebtoken": "^9.0.10",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
->>>>>>> be0dd489fa583bd17537979907feef3ccb06290c
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "vitest": "^4.0.13"

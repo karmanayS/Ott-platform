@@ -1,1 +1,1 @@
-{"root":["./src/index.ts"],"version":"5.9.3"}
+{"root":["./src/index.ts","./src/routes/admin.ts","./src/routes/auth.ts","./src/routes/otp-verification.ts","./src/tests/index.test.ts","./src/tests/helper/reset-db.ts","./src/tests/helper/seed-db.ts"],"version":"5.9.3"}
