@@ -1,0 +1,9 @@
+## signup , signin , route  in express 
+## create common package 
+## zod schema in common package
+## create email package , write templates of email for senidng otp 
+## export functions to send otp from email package 
+## use those functions to send email for otp 
+
+## tests for backend 
+
