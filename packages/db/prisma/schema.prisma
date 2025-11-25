@@ -14,8 +14,54 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  username String
-  email    String
-  password String
+  id         Int        @id @default(autoincrement())
+  username   String     @unique
+  email      String     @unique
+  password   String
+  imageUrl   String?
+  isVerified Boolean    @default(false)
+  comments   Comments[]
+  likes      Video[]
+}
+
+model Admin {
+  id         Int     @id @default(autoincrement())
+  username   String
+  email      String
+  password   String
+  imageUrl   String?
+  isVerified Boolean @default(false)
+  videos     Video[]
+}
+
+model Video {
+  id           Int    @id @default(autoincrement())
+  title        String
+  description  String
+  url          String
+  likes        Int
+  thumbnailUrl String
+  adminId      Int
+  genre        Genre
+  Admin        Admin  @relation(fields: [adminId], references: [id])
+  unlikes      Int
+  user         User   @relation(fields: [likes], references: [id])
+}
+
+model Comments {
+  id      Int    @id @default(autoincrement())
+  content String
+  likes   BigInt
+  unlikes BigInt
+  userId  Int
+  User    User   @relation(fields: [userId], references: [id])
+}
+
+enum Genre {
+  HORROR
+  ACTION
+  COMEDY
+  SUSPENSE
+  DRAMA
+  ADULT
 }
