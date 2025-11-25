@@ -16,6 +16,7 @@
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
     "@repo/common": "workspace:*",
+    "@repo/email": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/typescript-config": "workspace:*",
     "@types/axios": "^0.14.4",
