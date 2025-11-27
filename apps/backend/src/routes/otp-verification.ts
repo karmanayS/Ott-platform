@@ -17,7 +17,15 @@ otpRouter.post("/verify/:userId", async (req, res) => {
 
     if (!user) return res.status(404).json({ success: false, message: "user not found" })
     if (otp !== user.otp) return res.json({ success: false, message: "Incorrect otp, please check again" })
-    if (new Date().getHours() <= user.otpExpiry.getHours()) return res.json({ success: false, message: "otp has expired please generate new otp" })
+    if (new Date(user.otpExpiry) < new Date()) return res.json({ success: false, message: "otp has expired please generate new otp" })
+    
+    await prisma.user.update({
+      where: {
+        id : userId
+      }, data: {
+        isVerified: true
+      }
+    })  
 
     const token = jwt.sign({ userId }, JWT_SECRET)
     return res.json({

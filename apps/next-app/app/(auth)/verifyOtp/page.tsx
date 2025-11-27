@@ -18,13 +18,10 @@ import axios from "axios"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 //import { toast } from "sonner"
-import { useSearchParams } from 'next/navigation'
 
 export default function Verify() {
     const [value, setValue] = useState("")
     const router = useRouter()    
-    const searchParams = useSearchParams()
-    const username = searchParams.get('username')
 
     return (
         <div className="flex flex-col justify-center items-center w-full min-h-screen">
@@ -51,9 +48,9 @@ export default function Verify() {
                 </CardContent>
                 <CardFooter>
                     <Button onClick={async() => {
-                        const response = await axios.post("/api/otp-verification",{
-                            otp: value,
-                            username
+                        const userId = localStorage.getItem("userId")
+                        const response = await axios.post(`http://localhost:3001/otp/verify/${userId}`,{
+                            otp: value
                         })
                         if (!response.data.success) return //toast.error(response.data.message)
                         //toast.success(response.data.message)

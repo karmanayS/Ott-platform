@@ -7,6 +7,7 @@
 ## export functions to send otp from email package 
 ## use those functions to send email for otp 
 ## toast and loading in user auth and otp verify route frontend
+## API_URL not in env in next app
 
 ## tests for backend 
 

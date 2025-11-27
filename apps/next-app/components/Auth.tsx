@@ -56,7 +56,7 @@ export function Auth({isSignin}:{isSignin:boolean}) {
         <CardFooter>
             <Button onClick={async() => {
                 let url = "";
-                (isSignin) ? url = "http://localhost:3000/auth/signin" : url = "http://localhost:3000/auth/signup"
+                (isSignin) ? url = "http://localhost:3001/auth/signin" : url = "http://localhost:3001/auth/signup"
                 if (isSignin) {
                     const response = await axios.post(url,{
                         email: emailRef.current,
@@ -74,6 +74,8 @@ export function Auth({isSignin}:{isSignin:boolean}) {
                 })
                 if (!response.data.success) return // toast message with error
                 //toast success message
+                console.log(response.status, " : ", response.data)
+                localStorage.setItem("userId",response.data.userId)
                 router.push("/verifyOtp") 
                 return
             }} type="submit" className="w-full">

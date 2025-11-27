@@ -48,15 +48,17 @@ authRouter.post("/signup", async (req, res) => {
       const emailResponse = await sendEmail(otp, result.data.email, "SIGNUP")
       if (!emailResponse.success) {
         return res.status(403).json({
+          success: false,
           message: "error while sending mail"
         })
       }
       return res.json({
         success: true,
-        message: "Sent verification email"
+        message: "Sent verification email",
+        userId: user.id
       })
     }
-    await prisma.user.create({
+    const newUser = await prisma.user.create({
       data: {
         username, email,
         password: hashedPassword,
@@ -70,12 +72,14 @@ authRouter.post("/signup", async (req, res) => {
 
     if (!emailResponse.success) {
       return res.status(403).json({
+        success: false,
         message: "error while sending mail"
       })
     }
     return res.json({
       success: true,
-      message: "Sent verification email"
+      message: "Sent verification email",
+      userId: newUser.id
     })
   } catch (err) {
     console.log(err)
@@ -94,18 +98,20 @@ authRouter.post("/signin", async (req, res) => {
   })
   if (!result.success) return res.status(403).json({
     success: false,
-    message: JSON.parse(result.error.message)[0].message
+    message: "Invalid inputs"
   })
   try {
     const user = await prisma.user.findFirst({
       where: {
-        email, password
+        email
       }
     })
     if (!user) return res.json({
       success: false,
       message: "User not found"
     })
+    const isValid = bcrypt.compare(password,user.password)
+    if (!isValid) return res.json({success:false,message: "Incorrect password"})
     if (!user.isVerified) return res.json({
       success: false,
       message: "User is not verified, please signup"
